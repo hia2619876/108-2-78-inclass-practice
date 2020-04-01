@@ -28,92 +28,104 @@ plot(pressure)
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 ```{r}
-browseURL("https://docs.google.com/spreadsheets/d/1EAG49qDKPWWi0ebkVr29TLrvVnoBPfkvxYY-J3xLAHY/edit#gid=458686645")
+vectorExample <- c(2,6,7)
+listExample <- list(2,6,7)
+
+print(vectorExample)
+print(listExample)
 ```
 
-```{r}
-我的年紀 <- 20
-```
-
-```{r}
-my_108_total_credits <- 15
-my.108.total_credits <- 15
-我的108學年總學分數 <- 15
-`我的108學年總學分數` <- 15 
-`.108.total_credits` <- 15
-```
-
-
-```{r}
-library(googlesheets4)
-`出席狀況表單網址` <-  123
-ss <- as_sheets_id(`出席狀況表單網址`)
-homework_sheet <- sheets_read(ss,sheet=1)
-```
-
-
-```{r}
-studentId <- c(410773002, 410773015)
-studentId <- as.character(studentId)
-class(studentId)
-```
-
-台北 2020-03-18 13:52:40
-```{r}
-tpeDateTime=ymd_hms("2020-03-18 13:52:40",
-        tz="Asia/Taipei")
-tpeDateTime
-typeof()
-
-```
-葡萄牙 Mar.18, 2020, 05:52:40
 ```{r}
 library(lubridate)
+`小明交易1` <- list(
+  ymd_hms("2020-03-31T13:40:55Z"), # Date/Time class
+  "一芳", # character
+  2, # numeric
+  "水果茶" # character
+)
+print(`小明交易1`)
 ```
 
 ```{r}
-studentTime <- c
-  ymd_hms('2020-03-04T06:46:27Z')
-  ymd_hms(2020-03-11 16:06:45,tz=Asia/Taipei),
-  ymd_hms("2020-03-11 16:06:45",tz="Asia/Taipei")
+# list含兩個vectors
+`小明108學年課表A` <- list(
+  c("108-1","高級會計學","高等統計學"),
+  c("108-2","食在拉丁美洲")
+)
+print(`小明108學年課表A`)
 ```
- 
 
 ```{r}
-tpeTime <- c("2020-03-18 13:52:40",
-             "2020-03-11 03:12:40")
-tpeTime <- 
-  ymd_hms(
-    tpeTime,
-    tz="Asia/Taipei"
-    )
+# list含兩個lists
+`小明108學年課表B` <- list(
+  list("108-1","高級會計學","高等統計學"),
+  list("108-2","食在拉丁美洲")
+)
+print(`小明108學年課表B`)
 ```
 
+```{r}
+# list含兩個lists, 子層list又各含兩個vectors
+`小明108學年課表C` <- list(
+  list(
+    c("108-1"), # 可只寫 "108-1"
+    c("高級會計學","高等統計學")
+       ),
+  list(
+    c("108-2"),
+    c("食在拉丁美洲")
+  )
+)
+print(`小明108學年課表C`)
+```
+
+```{r}
+`小明108學年課表D` <- list(
+  '上學期'=list(
+    semeter=c("108-1"), 
+    courses=c("高級會計學","高等統計學")
+       ),
+  '下學期'=list(
+    semeter=c("108-2"),
+    courses=c("食在拉丁美洲")
+  )
+)
+print(`小明108學年課表D`)
+```
+
+##Github commit
+
+```{r}
+commit <- list(
+  author1 = list(
+    "Martin老師",
+    "mtlin@gm.ntpu.edu.tw",
+    ymd_hms("2020-03-25T07:17:40Z")),
+  commiter = list(
+    "emilyluckey",
+    "emily007@gmail.com",
+    ymd_hms("2020-03-26T08:18:40Z")
+),
+  message="update"
+)
+print(commit)
+#
+#
+#  committer=,
+#  message =
+```
+
+```{r}
+library(jsonlite) #
+toJSON(commit)
+```
 
 
 ```{r}
-studentTime<-c(
-  ymd_hms("2020-03-11T07:20:21Z"),
-  ymd_hms("2020-03-11 16:06:45",tz="Asia/Taipei"),
-  ymd_hms("2020-03-11 16:06:45",tz="Asia/Taipei"))
-studentTime
+'今明天氣' <- list(
+       date = c('2020-03-31','2020-04-01'),
+       `台北市`=list(  `溫度`=list(hot=c(25),low=c(18)  )  ),
+       `新北市`=list(  `溫度`=list(hot=c(24),low=c(15)  )  )
+       )
+print(今明天氣)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
