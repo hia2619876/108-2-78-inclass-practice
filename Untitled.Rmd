@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: '0415'
 output: html_document
 ---
 
@@ -27,119 +27,124 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
+```{r}
+today <- list(
+  list("台北市",c(highest_temp = 25),c(lowest_temp = 18)),
+  list("新北市",c(highest_temp = 24),c(lowest_temp = 15)))
+tomorrow <- list(
+  list("台北市",c(highest_temp = 25),c(lowest_temp = 18)),
+  list("新北市",c(highest_temp = 24),c(lowest_temp = 15)))
+
+weather <- list(today,tomorrow)
+
+print(weather)
+```
+
+```{r}
+a <- c("1","b","TRUE")
+a
+a[[2]] <- "c" # 元素存在: 替換
+a[[4]] <- "7" # 元素不存在： 增加
+a[c(5,6)] <- c("J", "K")
+a
+```
+
+```{r}
+library(lubridate)
+list1 <- 
+  list(
+    list(
+      name="Jack",
+      birthday=ymd("1998-03-21"),
+      status=c(height=177, weight=80)
+    )
+  )
+
+str(list1)
+```
+
+```{r}
+# 更改日期
+list1[[1]]$birthday <- ymd("1997-03-21")
+
+# 新增資料
+list1[[2]] <- list(
+  name="Mary",
+  birthday=ymd("1998-08-24")
+)
+
+str(list1)
+```
+
+```{r}
+list1[[1]]$status [["height"]] <- 176
+list1[[2]]$status <-c(height=163, weight=45)
+```
+
+```{r}
+list1[[1]][["age"]] <- 21
+list1[[2]]["age"] <- list(21)
+
+# 改變「一個」時，使用[[ ]]比較不會錯。
+str(list1)
+```
+
+```{r}
+list1[[1]][c("bloodType","registered")] <- list("AB",TRUE)
+
+str(list1)
+```
+
+```{r}
+print(a)
+a[-c(1,3)]
+a[c(-2)]
+
+print(a)
+a[-c(1,3)] -> a # 要回存才算真的刪除
+print(a)
+```
+
+```{r}
+list1[[1]][c(-3)] ->list1[[1]]
+list1[[2]][c(-3)] ->list1[[2]]
+str(list1)
+```
+
+
+```{r}
+str(list1)
+list1[[2]][c(1,2)] <- NULL
+str(list1)
+```
 
 ```{r}
 library(jsonlite)
-fromJSON("https://data.tainan.gov.tw/dataset/4cd9345a-04bf-4328-a97d-314ff78b4763/resource/afc025fc-1ef4-447c-b785-a680391d0ca1/download/tnsport2.json", simplifyDataFrame = F) -> tainanSportsMap
+fromJSON("https://data.ntpc.gov.tw/od/data/api/54DDDC93-589C-4858-9C95-18B2046CC1FC?$format=json", simplifyDataFrame = F) -> newTaipeiYouBike
 ```
 
 
-```{r}
-tainanSportsMap[[1]]
-```
-
-```{r}
-listExample <- 
-  list(
-    student="小明",
-    `學期`=list(
-      `108-1`=list(
-        list(
-          name="個體經濟學",
-          teacher="Alice",
-          grade=85
-        )
-      ),
-      `108-2`=list(
-        list(
-          name="總體經濟學",
-          teacher="Mark",
-          grade=78
-        )
-      )
-    )
-  )
-# 有多少位置可選：
-length(listExample)
-```
-
-```{r}
-str(listExample)
-```
 
 
-```{r}
-fromJSON("http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000157-002",
-         simplifyDataFrame = F) -> newTaipeiCityVaccine
-```
 
 
-```{r}
-newTaipeiCityVaccine[["result"]]
-```
 
-```{r}
-str(newTaipeiCityVaccine[[1]])
-```
 
-```{r}
-str(newTaipeiCityVaccine$result)
-```
-```{r}
-str(newTaipeiCityVaccine[[2]],max.level = 1)
-```
-```{r}
-listExample[c("student")]
-```
 
-```{r}
-fromJSON("https://www.dropbox.com/s/qnm9bnz7vccrvcz/taipeiNightMarkets.json?dl=1", simplifyDataFrame = F) -> taipeiNightMarkets
-```
 
-```{r}
-str(taipeiNightMarkets,max.level = 2)
-taipeiNightMarkets[c(1,5,9)]
-```
 
-```{r}
-names(taipeiNightMarkets)
-```
 
-```{r}
-c(T,F,F,F,T,F,T,T,T,F,F,F,F,F) -> selectMarkets
-```
 
-```{r}
-str(taipeiNightMarkets[c(T,F,F,F,T,F,T,T,T,F,F,F,F,F)],max.level = 1)
-```
 
-```{r}
-str(taipeiNightMarkets[selectMarkets],max.level=1)
-```
 
-```{r}
-selectMarkets[c(2,6,8)] <- TRUE
-```
 
-```{r}
-str(taipeiNightMarkets[selectMarkets],max.level = 1)
-```
 
-```{r}
-majors <- c("經濟學系","經濟學系","社會學系","社工系","經濟學系")
-names <- c("小英", "小美", "大雄","阿華", "阿尼")
-gender <- c("F","F","M","F","M")
-```
 
-```{r}
-econOnly <- c(T,T,F,F,T); econOnly
-names[econOnly]
-gender[econOnly] <- c(T,T,F)
 
-econFemaleOnly <- gender[econOnly]; econFemaleOnly
 
-FinalResult <- names[econOnly][c(T,T,F)]; FinalResult
-```
+
+
+
 
 
 
